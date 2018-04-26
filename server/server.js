@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 5000; 
 
 app.use(express.static('server/public'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 const Food = require('./models/food.schema'); 
 
@@ -23,13 +23,16 @@ mongoose.connection.on('error', (error) =>{
 }); //new
 //--------------Connecting to Mongo End-----------------//
 
-var food = ['nooooodle'];
+var food = [];
 
 app.get('/food', (req,res)=>{
     res.send(food);
 });
 
-
+app.post('/foodArray', (req,res) => {
+    food.push(req.body);
+    res.send(200);
+});
 
 app.listen(PORT, () => {
     console.log(`listening on port: ${PORT}`)

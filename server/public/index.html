@@ -11,8 +11,13 @@
 <body ng-app="FoodApp">
     <h1>Hungryyyyy</h1>
     <div ng-controller='FoodController as vm'>
-        <input ng-model='vm.message'/>
-        {{vm.message}}
+        <form ng-submit='vm.createFood()'>
+        <input type="text", ng-model="vm.newFood.foodName", placeholder="Food"/>
+        <input type="number", ng-model="vm.newFood.foodDeliciousness", placeholder="Deliciousness Level"/>
+        <input type="text", ng-model="vm.newFood.foodIsHot", placeholder="Is it hot?"/>
+        <button>Submits Fooods</button>
+        </form>
+        {{vm.foodArray}}
     </div>
 </body>
 </html>
