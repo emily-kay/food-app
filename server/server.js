@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 const Food = require('./models/food.schema'); 
 
 //--------------Connecting to Mongo Start-----------------//
-const databaseUrl = 'mongodb://localhost:27017/library'; //new
+const databaseUrl = 'mongodb://localhost:27017/kitchen'; //new
 mongoose.connect(databaseUrl) //new
 
 mongoose.connection.on('connected', ()=>{
@@ -23,15 +23,24 @@ mongoose.connection.on('error', (error) =>{
 }); //new
 //--------------Connecting to Mongo End-----------------//
 
-var food = [];
-
 app.get('/food', (req,res)=>{
-    res.send(food);
+    Food.find({})
+        .then((data) =>{
+            res.send(data);
+        }).catch((error)=>{
+            res.send(500);
+        });
 });
 
 app.post('/foodArray', (req,res) => {
-    food.push(req.body);
-    res.send(200);
+    Food.create(req.body)
+        .then(() =>{
+            res.sendStatus(200);
+        }).catch((error)=>{
+            res.sendStatus(500);
+            console.log(error);
+            
+        });
 });
 
 app.listen(PORT, () => {

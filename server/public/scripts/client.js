@@ -18,7 +18,9 @@ app.controller('FoodController', ['$http',function($http) { //what is inside of 
     }).catch(function(error) {
         console.log('error on /food GET', response.status);
         
-    })}
+    })};
+
+    self.displayArray();
 
     self.createFood = function(){
         $http({
