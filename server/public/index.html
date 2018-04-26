@@ -12,12 +12,19 @@
     <h1>Hungryyyyy</h1>
     <div ng-controller='FoodController as vm'>
         <form ng-submit='vm.createFood()'>
-        <input type="text", ng-model="vm.newFood.foodName", placeholder="Food"/>
-        <input type="number", ng-model="vm.newFood.foodDeliciousness", placeholder="Deliciousness Level"/>
-        <input type="text", ng-model="vm.newFood.foodIsHot", placeholder="Is it hot?"/>
-        <button>Submits Fooods</button>
+            <input type="text" ng-model="vm.newFood.foodName" placeholder="Food"/>
+            <label for="1" class="pull-left">1</label>
+            <input type="range" min="1" max="10" step="1" ng-model="vm.newFood.foodDeliciousness"/>
+            <label for="10" class="pull-right">10</label>
+            <input type="radio" name="status" ng-model="vm.newFood.foodIsHot" ng-value="true"/> Hot
+            <input type="radio" name="status" ng-model="vm.newFood.foodIsHot" ng-value="false"/>  Cold
+            <button>Submits Fooods</button>
         </form>
-        {{vm.foodArray}}
+        <ul>
+            <li ng-repeat="item in vm.foodArray">
+                {{item.foodName}} is {{item.foodDeliciousness}}/10 delicious and is {{item.foodIsHot}}-ly hot
+            </li>
+        </ul>
     </div>
 </body>
 </html>

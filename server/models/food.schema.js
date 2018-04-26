@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const foodSchema = new Schema ({
     foodName: {type: String},
     foodDeliciousness: {type: Number},
-    foodIsHot: {type: String}
+    foodIsHot: {type: Boolean}
 });
 
 module.exports = mongoose.model('Food', foodSchema); 

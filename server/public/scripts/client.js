@@ -1,12 +1,9 @@
-console.log('client.js is working');
-
 var app = angular.module('FoodApp', []);
 
 
 app.controller('FoodController', ['$http',function($http) { //what is inside of the function ($http in this case) has to be listed before it in the same order 
     var self = this;
     self.newFood = {};
-    self.message = 'Apples Pears Potato';
     
     self.displayArray= function(){
         $http({
@@ -15,12 +12,10 @@ app.controller('FoodController', ['$http',function($http) { //what is inside of 
     }).then(function successCallback(response) {
         self.foodArray = response.data;
         
-    }).catch(function(error) {
+    }).catch(function(response) {
         console.log('error on /food GET', response.status);
         
     })};
-
-    self.displayArray();
 
     self.createFood = function(){
         $http({
@@ -34,6 +29,8 @@ app.controller('FoodController', ['$http',function($http) { //what is inside of 
     }).catch(function(error) {
         console.log('error on /food POST', error.status);
         
-    })}
-    
+    })};
+
+    self.displayArray();
+
 }]);
