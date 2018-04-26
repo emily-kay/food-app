@@ -32,6 +32,24 @@ app.get('/food', (req,res)=>{
         });
 });
 
+app.delete('/foodArray', (req,res) => {
+    Food.findByIdAndRemove(req.query._id)
+        .then(() =>{
+            res.send(200);
+        }).catch((error)=>{
+            res.send(500);
+        });
+});
+
+app.put('/foodArray', (req,res) => {
+    Food.findByIdAndUpdate(req.body._id, req.body)
+        .then(() =>{
+            res.send(200);
+        }).catch((error)=>{
+            res.send(500);
+        });
+});
+
 app.post('/foodArray', (req,res) => {
     Food.create(req.body)
         .then(() =>{

@@ -28,7 +28,33 @@ app.controller('FoodController', ['$http',function($http) { //what is inside of 
             
     }).catch(function(error) {
         console.log('error on /food POST', error.status);
-        
+    
+    })};
+
+    self.saveFood = function(foodToSave) {
+    //     console.log('write an http request to delete this!', foodToSave);
+    //     console.log('Use the _id from mongo!');
+        $http({
+            method: 'PUT',
+            url: '/foodArray',
+            data: foodToSave
+        }).then(function successCallback(response) {
+            console.log('success!!! on /food PUT', response.status);
+            self.displayArray();
+    
+    })};
+    
+    self.deleteFood = function(foodToDelete) {
+    //     console.log('write an http request to save this!', foodToDelete);
+    //     console.log('Use the _id from mongo!');
+        $http({
+            method: 'DELETE',
+            url: '/foodArray',
+            params: foodToDelete
+        }).then(function successCallback(response) {
+            console.log('success!!! on /food DELETE', response.status);
+            self.displayArray();
+            
     })};
 
     self.displayArray();

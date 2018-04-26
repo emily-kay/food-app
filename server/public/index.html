@@ -20,11 +20,24 @@
             <input type="radio" name="status" ng-model="vm.newFood.foodIsHot" ng-value="false"/>  Cold
             <button>Submits Fooods</button>
         </form>
-        <ul>
-            <li ng-repeat="item in vm.foodArray">
-                {{item.foodName}} is {{item.foodDeliciousness}}/10 delicious and is {{item.foodIsHot}}-ly hot
-            </li>
-        </ul>
+        <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Deliciousness Rating</th>
+                        <th>Delete</th>
+                        <th>Save</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="food in vm.foodArray">
+                        <td><input ng-model="food.foodName"></td>
+                        <td><input ng-model="food.foodDeliciousness"></td>
+                        <td><button ng-click="vm.deleteFood(food)">Delete</button></td>
+                        <td><button ng-click="vm.saveFood(food)">Save</button></td>
+                    </tr>
+                </tbody>
+            </table>
     </div>
 </body>
 </html>
